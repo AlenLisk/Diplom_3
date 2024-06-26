@@ -1,6 +1,7 @@
 import allure
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
+from locators import *
 
 
 class BasePage:
@@ -20,3 +21,19 @@ class BasePage:
         current_url = self.driver.current_url
 
         return current_url
+
+    @allure.step('Нажать на кнопку Личный кабинет')
+    def click_button_personal_account(self):
+        button = self.find_element(BasePageLocators.BUTTON_PERSONAL_ACCOUNT)
+        button.click()
+
+    @allure.step('Нажать на кнопку Конструктор')
+    def click_button_constructor(self):
+        button = self.find_element(BasePageLocators.BUTTON_CONSTRUCTOR)
+        button.click()
+
+    @allure.step('Нажать на кнопку Лента заказов')
+    def click_button_order_feed(self):
+        button = self.find_element(BasePageLocators.BUTTON_ORDER_FEED)
+        button.click()
+
