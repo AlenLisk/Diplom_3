@@ -11,3 +11,40 @@ class HomePage(BasePage):
     @allure.step('Найти заголовок Лента заказов')
     def find_label_order_feed(self):
         return self.find_element(HomePageLocators.LABEL_ORDER_FEED)
+
+    @allure.step('Найти модальное окно')
+    def find_modal_window(self):
+        return self.find_element(HomePageLocators.MODAL_WINDOW)
+
+    @allure.step('Нажать на ингредиент')
+    def click_on_ingredient(self):
+        ingredient = self.find_element(HomePageLocators.INGREDIENT)
+        ingredient.click()
+
+    @allure.step('Закрыть модальное окно')
+    def click_button_cross(self):
+        button = self.find_element(HomePageLocators.CROSS)
+        button.click()
+        self.wait_invisibility_element(HomePageLocators.MODAL_WINDOW)
+
+    @allure.step('Перетащить ингредиент')
+    def drag_ingredient(self):
+        source = self.find_element(HomePageLocators.INGREDIENT)
+        target = self.find_element(HomePageLocators.ORDER_GENERATOR)
+        self.drag_an_element(source, target)
+
+    @allure.step('Получить значение счетчика')
+    def get_value_counter(self):
+        counter = self.find_element(HomePageLocators.COUNTER)
+        value = counter.text
+
+        return value
+
+    @allure.step('Нажать на кнопку Оформить заказ')
+    def click_button_create_order(self):
+        button = self.find_element(HomePageLocators.BUTTON_CREATE_ORDER)
+        button.click()
+
+    @allure.step('Найти модальное окно заказа')
+    def find_modal_window_order(self):
+        return self.find_element(HomePageLocators.LABEL_ORDER)

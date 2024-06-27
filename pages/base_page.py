@@ -1,6 +1,9 @@
 import allure
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.common.action_chains import ActionChains
+
+
 from locators import *
 
 
@@ -37,3 +40,11 @@ class BasePage:
         button = self.find_element(BasePageLocators.BUTTON_ORDER_FEED)
         button.click()
 
+    @allure.step('Ожидание скрытия элемента')
+    def wait_invisibility_element(self, locator):
+        WebDriverWait(self.driver, 10).until(expected_conditions.invisibility_of_element(locator))
+
+    @allure.step('Перетаскивание элемента')
+    def drag_an_element(self, source_element, target_element):
+        actions = ActionChains(self.driver)
+        actions.click_and_hold(source_element).move_to_element(target_element).release().perform()

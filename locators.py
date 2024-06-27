@@ -30,3 +30,10 @@ class BasePageLocators:
 class HomePageLocators:
     LABEL_ASSEMBLE_A_BURGER = (By.XPATH, ".//main//h1[text()='Соберите бургер']")
     LABEL_ORDER_FEED = (By.XPATH, ".//main//h1[text()='Лента заказов']")
+    MODAL_WINDOW = (By.XPATH, ".//section//h2[text()='Детали ингредиента']")
+    INGREDIENT = (By.XPATH, ".//img[@alt='Флюоресцентная булка R2-D3']")
+    CROSS = (By.XPATH, "//button[contains(@class,'close')]")
+    ORDER_GENERATOR = (By.XPATH, ".//span[@class='constructor-element__text' and text()='Перетяните булочку сюда (верх)']")
+    COUNTER = (By.XPATH, "//ul[1]/a[1]//p[contains(@class, 'num')]")
+    BUTTON_CREATE_ORDER = (By.XPATH, ".//main//button[text()='Оформить заказ']")
+    LABEL_ORDER = (By.XPATH, ".//section//div/p[text()='Ваш заказ начали готовить']")
