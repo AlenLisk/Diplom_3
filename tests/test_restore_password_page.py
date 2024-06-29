@@ -18,7 +18,7 @@ class TestForgotPasswordPage:
         value = forgot_password_page.set_email()
         forgot_password_page.click_button_restore()
         reset_password_page.find_title_restore_password()
-        time.sleep(1)
+        time.sleep(2)
         current_url = forgot_password_page.get_current_url()
 
         assert value == UserData.email

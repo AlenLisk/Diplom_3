@@ -4,6 +4,7 @@ from pages.login_page import LoginPage
 from pages.forgot_password_page import ForgotPasswordPage
 from pages.personal_account_page import PersonalAccountPage
 from pages.reset_password_page import ResetPasswordPage
+from pages.order_feed_page import OrderFeedPage
 from pages.home_page import HomePage
 from urls import Urls
 
@@ -11,6 +12,7 @@ from urls import Urls
 @pytest.fixture
 def driver():
     driver = webdriver.Chrome()
+    driver.set_window_size(1920, 1080)
     yield driver
     driver.quit()
 
@@ -51,3 +53,10 @@ def home_page(driver):
     home_page.go_to_site(url)
 
     return home_page
+
+@pytest.fixture
+def order_feed_page(driver):
+    order_feed_page = OrderFeedPage(driver)
+
+    return order_feed_page
+

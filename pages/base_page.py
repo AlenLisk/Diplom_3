@@ -2,7 +2,7 @@ import allure
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.common.action_chains import ActionChains
-
+import time
 
 from locators import *
 
@@ -39,6 +39,7 @@ class BasePage:
     def click_button_order_feed(self):
         button = self.find_element(BasePageLocators.BUTTON_ORDER_FEED)
         button.click()
+        time.sleep(2)
 
     @allure.step('Ожидание скрытия элемента')
     def wait_invisibility_element(self, locator):
@@ -48,3 +49,9 @@ class BasePage:
     def drag_an_element(self, source_element, target_element):
         actions = ActionChains(self.driver)
         actions.click_and_hold(source_element).move_to_element(target_element).release().perform()
+
+    @allure.step('Получить текст элемента')
+    def get_element_text(self, locator):
+        text = self.driver.find_element(*locator).text
+
+        return text

@@ -38,6 +38,7 @@ class TestPersonalAccountPage:
         home_page.click_on_ingredient()
         element = home_page.find_modal_window()
         home_page.click_button_cross()
+        time.sleep(1)
 
         assert element.is_displayed() == False
 
@@ -53,9 +54,7 @@ class TestPersonalAccountPage:
     def test_create_order(self, login_page, driver):
         login_page.login()
         home_page = HomePage(driver)
-        home_page.find_label_assemble_a_burger()
-        home_page.drag_ingredient()
-        home_page.click_button_create_order()
+        home_page.create_order()
         element = home_page.find_modal_window_order()
 
         assert element.is_displayed() == True

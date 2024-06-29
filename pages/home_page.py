@@ -1,6 +1,7 @@
 from locators import *
 from pages.base_page import BasePage
 import allure
+import time
 
 
 class HomePage(BasePage):
@@ -48,3 +49,35 @@ class HomePage(BasePage):
     @allure.step('Найти модальное окно заказа')
     def find_modal_window_order(self):
         return self.find_element(HomePageLocators.LABEL_ORDER)
+
+    @allure.step('Закрыть модальное окно')
+    def click_button_cross(self):
+        button = self.find_element(HomePageLocators.CROSS)
+        time.sleep(1)
+        button.click()
+        self.wait_invisibility_element(HomePageLocators.LABEL_ORDER)
+
+    @allure.step('Получить номер заказа')
+    def get_order_number(self):
+        time.sleep(2)
+        number = self.find_element(HomePageLocators.NUMBER_ORDER)
+        value = number.text
+
+        return value
+
+    @allure.step('Созать заказ без получения номера и закрытия модального окна')
+    def create_order(self):
+        self.find_label_assemble_a_burger()
+        self.drag_ingredient()
+        self.click_button_create_order()
+
+
+    @allure.step('Созать заказ с получение номера и закрытием модального окна')
+    def create_order_modification(self):
+        self.find_label_assemble_a_burger()
+        self.drag_ingredient()
+        self.click_button_create_order()
+        value = self.get_order_number()
+        self.click_button_cross()
+
+        return value
