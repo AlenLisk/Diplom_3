@@ -25,8 +25,9 @@ class BasePage:
 
     @allure.step('Нажать на кнопку Личный кабинет')
     def click_button_personal_account(self):
-        button = self.find_element(BasePageLocators.BUTTON_PERSONAL_ACCOUNT)
+        button = self.wait_click_element(BasePageLocators.BUTTON_PERSONAL_ACCOUNT)
         button.click()
+        self.wait_click_element(PersonalAccountPageLocators.BUTTON_ORDER_HISTORY)
 
     @allure.step('Нажать на кнопку Конструктор')
     def click_button_constructor(self):
@@ -35,7 +36,7 @@ class BasePage:
 
     @allure.step('Нажать на кнопку Лента заказов')
     def click_button_order_feed(self):
-        button = self.find_element(BasePageLocators.BUTTON_ORDER_FEED)
+        button = self.wait_click_element(BasePageLocators.BUTTON_ORDER_FEED)
         button.click()
 
     @allure.step('Ожидание скрытия элемента')
@@ -52,3 +53,7 @@ class BasePage:
         text = self.driver.find_element(*locator).text
 
         return text
+
+    @allure.step('Ожидание кликабельности элемента')
+    def wait_click_element(self, locator):
+        return WebDriverWait(self.driver, 10).until(expected_conditions.element_to_be_clickable(locator))

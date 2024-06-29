@@ -27,6 +27,7 @@ class HomePage(BasePage):
         button.click()
         self.wait_invisibility_element(HomePageLocators.MODAL_WINDOW)
 
+
     @allure.step('Перетащить ингредиент')
     def drag_ingredient(self):
         source = self.find_element(HomePageLocators.INGREDIENT)
@@ -49,11 +50,11 @@ class HomePage(BasePage):
     def find_modal_window_order(self):
         return self.find_element(HomePageLocators.LABEL_ORDER)
 
-    @allure.step('Закрыть модальное окно')
-    def click_button_cross(self):
+    @allure.step('Закрыть модальное окно заказа')
+    def click_button_cross_order(self):
         button = self.find_element(HomePageLocators.CROSS)
         button.click()
-        self.wait_invisibility_element(HomePageLocators.LABEL_ORDER)
+        self.wait_invisibility_element(HomePageLocators.CROSS)
 
     @allure.step('Получить номер заказа')
     def get_order_number(self):
@@ -73,7 +74,9 @@ class HomePage(BasePage):
         self.find_label_assemble_a_burger()
         self.drag_ingredient()
         self.click_button_create_order()
+        self.wait_click_element(HomePageLocators.CROSS)
         value = self.get_order_number()
-        self.click_button_cross()
+        self.click_button_cross_order()
+        self.wait_invisibility_element(HomePageLocators.CROSS)
 
         return value

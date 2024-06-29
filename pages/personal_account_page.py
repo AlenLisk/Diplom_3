@@ -1,7 +1,7 @@
-from locators import PersonalAccountPageLocators
+from locators import *
 from pages.base_page import BasePage
 import allure
-import time
+
 
 
 class PersonalAccountPage(BasePage):
@@ -19,6 +19,7 @@ class PersonalAccountPage(BasePage):
     def click_button_logout(self):
         button = self.find_element(PersonalAccountPageLocators.BUTTON_LOGOUT)
         button.click()
+        self.wait_click_element(LoginPageLocators.BUTTON_LOGIN)
 
     @allure.step('Получить номер последнего заказа в Истории')
     def get_number_last_order(self):

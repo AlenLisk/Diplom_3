@@ -1,6 +1,7 @@
 from conftest import *
 import allure
 from urls import Urls
+import time
 
 
 class TestOrderFeedPage:
@@ -45,6 +46,7 @@ class TestOrderFeedPage:
         home_page = HomePage(driver)
         order_number = home_page.create_order_modification()
         home_page.click_button_order_feed()
+        time.sleep(2)
         order_number_in_work = order_feed_page.get_order_in_work()
 
         assert '0' + order_number == order_number_in_work

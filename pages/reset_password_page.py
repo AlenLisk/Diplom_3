@@ -9,9 +9,6 @@ class ResetPasswordPage(BasePage):
         button = self.find_element(ResetPasswordPageLocators.BUTTON_SHOW_PASSWORD)
         button.click()
 
-    @allure.step('Поиск заголовка Восстановление пароля')
-    def find_title_restore_password(self):
-        self.find_element(ResetPasswordPageLocators.TITLE_RESTORE_PASSWORD)
 
     @allure.step('Поиск активного поля Пароль')
     def find_active_field_password(self):

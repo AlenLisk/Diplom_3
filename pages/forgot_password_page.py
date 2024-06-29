@@ -1,4 +1,4 @@
-from locators import ForgotPasswordPageLocators
+from locators import *
 from pages.base_page import BasePage
 from test_data import UserData
 import allure
@@ -17,3 +17,4 @@ class ForgotPasswordPage(BasePage):
     def click_button_restore(self):
         button = self.find_element(ForgotPasswordPageLocators.BUTTON_RESTORE)
         button.click()
+        self.wait_click_element(ResetPasswordPageLocators.BUTTON_SAVE)
