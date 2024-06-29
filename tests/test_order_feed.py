@@ -1,5 +1,4 @@
 from conftest import *
-import time
 import allure
 from urls import Urls
 

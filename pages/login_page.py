@@ -25,7 +25,6 @@ class LoginPage(BasePage):
         button = self.find_element(LoginPageLocators.BUTTON_LOGIN)
         button.click()
 
-
     @allure.step('Логин')
     def login(self):
         self.set_email()

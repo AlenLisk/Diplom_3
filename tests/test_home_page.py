@@ -1,5 +1,4 @@
 from conftest import *
-import time
 import allure
 from urls import Urls
 
@@ -16,7 +15,7 @@ class TestPersonalAccountPage:
         assert current_url == Urls.HOME
 
     @allure.title('Проверка перехода в ленту заказов по кнопке Лента Заказов')
-    def test_button_constructor(self, home_page):
+    def test_button_feed(self, home_page):
         home_page.find_label_assemble_a_burger()
         home_page.click_button_order_feed()
         home_page.find_label_order_feed()
@@ -38,7 +37,6 @@ class TestPersonalAccountPage:
         home_page.click_on_ingredient()
         element = home_page.find_modal_window()
         home_page.click_button_cross()
-        time.sleep(1)
 
         assert element.is_displayed() == False
 
@@ -58,7 +56,3 @@ class TestPersonalAccountPage:
         element = home_page.find_modal_window_order()
 
         assert element.is_displayed() == True
-
-
-
-

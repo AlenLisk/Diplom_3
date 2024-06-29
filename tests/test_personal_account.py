@@ -1,5 +1,4 @@
 from conftest import *
-import time
 import allure
 from urls import Urls
 
@@ -27,7 +26,6 @@ class TestPersonalAccountPage:
         login_page.login()
         login_page.click_button_personal_account()
         personal_account_page.click_button_logout()
-        time.sleep(1)
         current_url = login_page.get_current_url()
 
         assert current_url == Urls.LOGIN

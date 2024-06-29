@@ -1,6 +1,5 @@
 from locators import OrderFeedPageLocators
 from pages.base_page import BasePage
-from test_data import UserData
 import allure
 
 

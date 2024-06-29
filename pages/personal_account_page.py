@@ -26,4 +26,3 @@ class PersonalAccountPage(BasePage):
         value = number.text
 
         return value
-

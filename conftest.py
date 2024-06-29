@@ -7,12 +7,21 @@ from pages.reset_password_page import ResetPasswordPage
 from pages.order_feed_page import OrderFeedPage
 from pages.home_page import HomePage
 from urls import Urls
+import pytest
+from selenium import webdriver
 
 
-@pytest.fixture
-def driver():
-    driver = webdriver.Chrome()
-    driver.set_window_size(1920, 1080)
+@pytest.fixture(params=["chrome", "firefox"])
+def driver(request):
+    if request.param == "chrome":
+        driver = webdriver.Chrome()
+        driver.set_window_size(1920, 1080)
+    elif request.param == "firefox":
+        driver = webdriver.Firefox()
+        driver.set_window_size(1920, 1080)
+    else:
+        raise ValueError("Браузер не поддерживается")
+
     yield driver
     driver.quit()
 
@@ -34,17 +43,20 @@ def forgot_password_page(driver):
 
     return forgot_password_page
 
+
 @pytest.fixture
 def reset_password_page(driver):
     reset_password_page = ResetPasswordPage(driver)
 
     return reset_password_page
 
+
 @pytest.fixture
 def personal_account_page(driver):
     personal_account_page = PersonalAccountPage(driver)
 
     return personal_account_page
+
 
 @pytest.fixture
 def home_page(driver):
@@ -54,9 +66,9 @@ def home_page(driver):
 
     return home_page
 
+
 @pytest.fixture
 def order_feed_page(driver):
     order_feed_page = OrderFeedPage(driver)
 
     return order_feed_page
-
