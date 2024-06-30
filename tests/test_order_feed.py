@@ -1,7 +1,6 @@
 from conftest import *
 import allure
 from urls import Urls
-import time
 
 
 class TestOrderFeedPage:
@@ -46,10 +45,10 @@ class TestOrderFeedPage:
         home_page = HomePage(driver)
         order_number = home_page.create_order_modification()
         home_page.click_button_order_feed()
-        time.sleep(2)
-        order_number_in_work = order_feed_page.get_order_in_work()
+        home_page.wait_orders_loading()
+        order_in_work = order_feed_page.get_order_in_work(order_number)
 
-        assert '0' + order_number == order_number_in_work
+        assert order_in_work != None
 
     @allure.title('Проверка отображения заказов в Лента заказов')
     def test_display_orders(self, login_page, driver, personal_account_page):
@@ -58,6 +57,7 @@ class TestOrderFeedPage:
         order_number = home_page.create_order_modification()
         login_page.click_button_personal_account()
         personal_account_page.click_button_order_history()
+        personal_account_page.wait_orders_loading()
         order_number_in_order_history = personal_account_page.get_number_last_order()
         personal_account_page.go_to_site(Urls.FEED)
         order_feed_page = OrderFeedPage(driver)

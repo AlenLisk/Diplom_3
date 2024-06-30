@@ -30,8 +30,8 @@ class HomePage(BasePage):
 
     @allure.step('Перетащить ингредиент')
     def drag_ingredient(self):
-        source = self.find_element(HomePageLocators.INGREDIENT)
-        target = self.find_element(HomePageLocators.ORDER_GENERATOR)
+        source = self.wait_click_element(HomePageLocators.INGREDIENT)
+        target = self.wait_click_element(HomePageLocators.ORDER_GENERATOR)
         self.drag_an_element(source, target)
 
     @allure.step('Получить значение счетчика')
@@ -74,6 +74,7 @@ class HomePage(BasePage):
         self.find_label_assemble_a_burger()
         self.drag_ingredient()
         self.click_button_create_order()
+        self.wail_modal_loading()
         self.wait_click_element(HomePageLocators.CROSS)
         value = self.get_order_number()
         self.click_button_cross_order()

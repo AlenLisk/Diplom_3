@@ -27,9 +27,12 @@ class PersonalAccountPageLocators:
 
 
 class BasePageLocators:
-    BUTTON_PERSONAL_ACCOUNT = (By.XPATH, ".//p[text()='Личный Кабинет']")
+    BUTTON_PERSONAL_ACCOUNT = (By.XPATH, ".//a//p[text()='Личный Кабинет']")
     BUTTON_CONSTRUCTOR = (By.XPATH, ".//header//p[text()='Конструктор']")
     BUTTON_ORDER_FEED = (By.XPATH, ".//p[text()='Лента Заказов']")
+    MODAL_LOADING = (By.XPATH, "//img[contains(@alt, 'loading animation')]")
+    LABEL_PAGE_LOADING = (By.XPATH, "//div[text()='Загрузка...']")
+
 
 
 class HomePageLocators:
@@ -50,11 +53,15 @@ class OrderFeedPageLocators:
     CONSIST = (By.XPATH, ".//p[text()='Cостав']")
     COUNTER_ORDERS = (By.XPATH, "//p[text()='Выполнено за все время:']/following-sibling::p")
     COUNTER_ORDERS_DAY = (By.XPATH, "//p[text()='Выполнено за сегодня:']/following-sibling::p")
-    NUMBER_ORDER_IN_WORK = (By.XPATH, ".//ul[@class='OrderFeed_orderListReady__1YFem "
-                                      "OrderFeed_orderList__cBvyi']/li[@class='text text_type_digits-default mb-2']")
 
     @staticmethod
-    def get_order(number):
-        ORDER = (By.XPATH, f'.//p[text()=\'{number}\']')
+    def create_locator_order_in_feed(number):
+        locator = (By.XPATH, f'.//p[text()=\'{number}\']')
+        return locator
 
-        return ORDER
+
+    @staticmethod
+    def create_locator_order_is_ready(number):
+        locator = (By.XPATH, f'//ul[contains(@class, \'OrderFeed_orderListReady\')]//li[text()=\'{number}\']')
+        return locator
+

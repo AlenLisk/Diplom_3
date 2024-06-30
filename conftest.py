@@ -11,13 +11,17 @@ import pytest
 from selenium import webdriver
 
 
-@pytest.fixture(params=["chrome"])
+@pytest.fixture(params=["chrome", "firefox"])
 def driver(request):
     if request.param == "chrome":
-        driver = webdriver.Chrome()
+        options = webdriver.ChromeOptions()
+        options.add_argument("--headless=new")
+        driver = webdriver.Chrome(options=options)
         driver.set_window_size(1920, 1080)
     elif request.param == "firefox":
-        driver = webdriver.Firefox()
+        options = webdriver.FirefoxOptions()
+        options.add_argument("-headless")
+        driver = webdriver.Firefox(options=options)
         driver.set_window_size(1920, 1080)
     else:
         raise ValueError("Браузер не поддерживается")

@@ -28,12 +28,16 @@ class OrderFeedPage(BasePage):
         return value
 
     @allure.step('Получаем номер заказа в работе')
-    def get_order_in_work(self):
-        return self.get_element_text(OrderFeedPageLocators.NUMBER_ORDER_IN_WORK)
+    def get_order_in_work(self, number):
+        LOCATOR = OrderFeedPageLocators.create_locator_order_is_ready(number)
+        order = self.wait_visibility_element(LOCATOR)
+        print(order.text)
+
+        return order
 
     @allure.step('Ищем нужный заказ в ленте заказов')
     def get_order_in_feed(self, number):
-        LOCATOR = OrderFeedPageLocators.get_order(number)
+        LOCATOR = OrderFeedPageLocators.create_locator_order_in_feed(number)
         order = self.find_element(LOCATOR)
 
         return order

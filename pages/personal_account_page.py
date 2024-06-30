@@ -3,11 +3,11 @@ from pages.base_page import BasePage
 import allure
 
 
-
 class PersonalAccountPage(BasePage):
 
     @allure.step('Нажать на кнопку История заказов')
     def click_button_order_history(self):
+        self.wail_modal_loading()
         button = self.find_element(PersonalAccountPageLocators.BUTTON_ORDER_HISTORY)
         button.click()
 

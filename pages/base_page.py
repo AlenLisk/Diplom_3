@@ -41,7 +41,11 @@ class BasePage:
 
     @allure.step('Ожидание скрытия элемента')
     def wait_invisibility_element(self, locator):
-        WebDriverWait(self.driver, 10).until(expected_conditions.invisibility_of_element(locator))
+        WebDriverWait(self.driver, 10).until(expected_conditions.invisibility_of_element_located(locator))
+
+    @allure.step('Ожидание появления элемента')
+    def wait_visibility_element(self, locator, delay=10):
+        return WebDriverWait(self.driver, delay).until(expected_conditions.visibility_of_element_located(locator))
 
     @allure.step('Перетаскивание элемента')
     def drag_an_element(self, source_element, target_element):
@@ -57,3 +61,11 @@ class BasePage:
     @allure.step('Ожидание кликабельности элемента')
     def wait_click_element(self, locator):
         return WebDriverWait(self.driver, 10).until(expected_conditions.element_to_be_clickable(locator))
+
+    @allure.step("Ожидание закрытия модального окна загрузки")
+    def wail_modal_loading(self):
+        self.wait_invisibility_element(BasePageLocators.MODAL_LOADING)
+
+    @allure.step("Ожидание окончания загрузки заказов")
+    def wait_orders_loading(self):
+        self.wait_invisibility_element(BasePageLocators.LABEL_PAGE_LOADING)
