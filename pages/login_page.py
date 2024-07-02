@@ -30,3 +30,7 @@ class LoginPage(BasePage):
         self.set_email()
         self.set_password()
         self.click_button_login()
+
+    @allure.step('Найти ссылку восстановить пароль')
+    def find_link_forgot_password(self):
+        return self.find_element(LoginPageLocators.LINK_RESTORE_PASSWORD)

@@ -15,3 +15,7 @@ class ResetPasswordPage(BasePage):
         field = self.find_element(ResetPasswordPageLocators.INPUT_STATUS_ACTIVE)
 
         return field
+
+    @allure.step('Поиск заголловка Восстановление пароля')
+    def find_title_restore_password(self):
+        return self.find_element(ResetPasswordPageLocators.TITLE_RESTORE_PASSWORD)

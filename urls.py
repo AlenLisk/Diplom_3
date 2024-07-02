@@ -1,8 +1,10 @@
 class Urls:
-    LOGIN = 'https://stellarburgers.nomoreparties.site/login'
-    RESTORE_PASSWORD = 'https://stellarburgers.nomoreparties.site/forgot-password'
-    RESET_PASSWORD = 'https://stellarburgers.nomoreparties.site/reset-password'
-    PERSONAL_ACCOUNT = 'https://stellarburgers.nomoreparties.site/account/profile'
-    ORDER_HISTORY = 'https://stellarburgers.nomoreparties.site/account/order-history'
-    HOME = 'https://stellarburgers.nomoreparties.site/'
-    FEED = 'https://stellarburgers.nomoreparties.site/feed'
+    URL = 'https://stellarburgers.nomoreparties.site'
+
+    LOGIN = f'{URL}/login'
+    RESTORE_PASSWORD = f'{URL}/forgot-password'
+    RESET_PASSWORD = f'{URL}/reset-password'
+    PERSONAL_ACCOUNT = f'{URL}/account/profile'
+    ORDER_HISTORY = f'{URL}/account/order-history'
+    HOME = f'{URL}/'
+    FEED = f'{URL}/feed'

@@ -18,3 +18,7 @@ class ForgotPasswordPage(BasePage):
         button = self.find_element(ForgotPasswordPageLocators.BUTTON_RESTORE)
         button.click()
         self.wait_click_element(ResetPasswordPageLocators.BUTTON_SAVE)
+
+    @allure.step('Нажйти кнопку восстановить')
+    def find_button_restore(self):
+        return self.find_element(ForgotPasswordPageLocators.BUTTON_RESTORE)
